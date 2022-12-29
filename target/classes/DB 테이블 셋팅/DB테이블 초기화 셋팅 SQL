@@ -1,0 +1,240 @@
+--회원가입 테이블
+DROP TABLE BOOK_MEMBER;
+CREATE TABLE BOOK_MEMBER(
+  memberId VARCHAR2(50),
+  memberPw VARCHAR2(100) NOT NULL,
+  memberName VARCHAR2(30) NOT NULL,
+  memberMail VARCHAR2(100) NOT NULL,
+  memberAddr1 VARCHAR2(100) NOT NULL,
+  memberAddr2 VARCHAR2(100) NOT NULL,
+  memberAddr3 VARCHAR2(100) NOT NULL,
+  adminCk NUMBER NOT NULL,
+  regDate DATE NOT NULL,
+  money number NOT NULL,
+  point number NOT NULL,
+  PRIMARY KEY(memberId)
+);
+commit;
+
+-- 국가 테이블 생성
+DROP TABLE VAM_NATION;
+
+CREATE TABLE VAM_NATION(
+NATIONID VARCHAR2(2) PRIMARY KEY,
+NATIONNAME VARCHAR2(50)
+);
+ 
+-- 국가 테이블 데이터 삽입
+insert into vam_nation values ('01', '국내');
+insert into vam_nation values ('02', '국외');
+ 
+-- 작가 테이블 생성
+DROP TABLE VAM_AUTHOR;
+CREATE TABLE VAM_AUTHOR(
+AUTHORID NUMBER NOT NULL PRIMARY KEY,
+AUTHORNAME VARCHAR2(50),
+NATIONID VARCHAR2(2),
+AUTHORINTRO LONG,
+FOREIGN KEY (NATIONID) REFERENCES VAM_NATION(NATIONID)
+);
+ALTER TABLE VAM_AUTHOR ADD REGDATE DATE DEFAULT SYSDATE;
+ALTER TABLE VAM_AUTHOR ADD UPDATEDATE DATE DEFAULT SYSDATE;
+
+--작가 테이블 시퀀스 초기화 및 삭제
+DELETE FROM VAM_AUTHOR;
+ALTER SEQUENCE VAM_AUTHOR_SEQ INCREMENT BY -남아있는시퀀스번호;
+DROP SEQUENCE VAM_AUTHOR_SEQ;
+
+--작가 테이블 시퀀스 생성
+1,2 둘중에 하나 선택해서 생성
+1.
+CREATE SEQUENCE VAM_AUTHOR_SEQ
+START WITH 1
+INCREMENT BY 1;
+commit;
+2.
+CREATE SEQUENCE VAM_AUTHOR_SEQ
+MINVALUE 1
+MAXVALUE 99999
+START WITH 1
+INCREMENT BY 1
+CACHE 20;
+
+-- 상품 테이블 
+DROP TABLE VAM_BOOK;
+CREATE TABLE VAM_BOOK(
+BOOKID NUMBER NOT NULL PRIMARY KEY,
+BOOKNAME VARCHAR2(50) NOT NULL,
+AUTHORID NUMBER,
+PUBLEYEAR DATE NOT NULL,
+PUBLISHER VARCHAR2(70) NOT NULL,
+CATECODE VARCHAR2(30),
+BOOKPRICE NUMBER NOT NULL,
+BOOKSTOCK NUMBER NOT NULL,
+BOOKDISCOUNT NUMBER(2,2),
+BOOKINTRO CLOB,
+BOOKCONTENTS CLOB,
+REGDATE DATE DEFAULT SYSDATE,
+UPDATEDATE DATE DEFAULT SYSDATE
+);
+
+
+--작가 테이블 시퀀스 초기화 및 삭제
+DELETE FROM VAM_BOOK;
+ALTER SEQUENCE VAM_BOOK_SEQ INCREMENT BY -남아있는시퀀스번호;
+
+DROP SEQUENCE VAM_BOOK_SEQ;
+CREATE SEQUENCE VAM_BOOK_seq
+START WITH 1
+INCREMENT BY 1;
+COMMIT;
+
+-- 카테고리 테이블
+DROP TABLE VAM_BCATE;
+CREATE TABLE VAM_BCATE(
+TIER NUMBER(1) NOT NULL,
+CATENAME VARCHAR2(30) NOT NULL,
+CATECODE VARCHAR2(30) NOT NULL,
+CATEPARENT VARCHAR2(30),
+PRIMARY KEY(CATECODE),
+FOREIGN KEY(CATEPARENT) REFERENCES VAM_BCATE(CATECODE) 
+);
+
+--카테고리 기본 값 입력
+-- 데이터 삽입
+insert into vam_bcate(tier, cateName, cateCode) values (1, '국내', '100000');
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (2, '소설', '101000','100000');    
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (3, '한국소설', '101001','101000');
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (3, '영미소설', '101002','101000');
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (3, '일본소설', '101003','101000');
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (2, '시/에세이', '102000','100000');    
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (3, '한국시', '102001','102000');    
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (3, '해외시', '102002','102000');    
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (2, '경제/경영', '103000','100000');    
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (3, '경영일반', '103001','103000');    
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (3, '경영이론', '103002','103000');    
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (3, '경제일반', '103003','103000');    
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (3, '경제이론', '103004','103000');    
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (2, '자기계발', '104000','100000');    
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (3, '성공/처세', '104001','104000');    
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (3, '자기능력계발', '104002','104000');    
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (3, '인간관계', '104003','104000');    
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (2, '인문', '105000','100000');    
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (3, '심리학', '105001','105000');    
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (3, '교육학', '105002','105000');    
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (3, '철학', '105003','105000');    
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (2, '역사/문화', '106000','100000');
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (3, '역사일반', '106001','106000');
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (3, '세계사', '106002','106000');
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (3, '한국사', '106003','106000');
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (2, '과학', '107000','100000');
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (3, '과학이론', '107001','107000');
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (3, '수학', '107002','107000');
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (3, '물리학', '107003','107000');
+insert into vam_bcate(tier, cateName, cateCode) values (1, '국외', '200000');
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (2, '문학', '201000','200000');    
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (3, '소설', '201001','201000');    
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (3, '시', '201002','201000');    
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (3, '희곡', '201003','201000');    
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (2, '인문/사회', '202000','200000');    
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (3, '교양', '202001','202000');    
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (3, '철학', '202002','202000');    
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (2, '경제/경영', '203000','200000');    
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (3, '경제학', '203001','203000');    
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (3, '경영학', '203002','203000');    
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (3, '투자', '203003','203000');    
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (2, '과학/기술', '204000','200000');    
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (3, '교양과학', '204001','204000');    
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (3, '물리학', '204002','204000');    
+insert into vam_bcate(tier, cateName, cateCode, cateParent) values (3, '수학', '204003','204000');  
+
+-- 외래키 추가
+alter table vam_book add foreign key (authorId) references vam_author(authorId);
+alter table vam_book add foreign key (cateCode) references vam_bcate(cateCode);
+
+-- 이미지 테이블
+drop table vam_image;
+create table vam_image(
+bookId int ,
+fileName varchar2(100) not null,
+uploadPath varchar2(200) not null,
+uuid varchar2(100)not null ,
+primary key (uuid),
+foreign key (bookId) references vam_book(bookId)
+);
+
+-- 장바구니 테이블
+drop table vam_cart;
+create table vam_cart(
+cartId number not null primary key,
+memberId varchar2(50),
+bookId number,
+bookCount number,
+foreign key (memberId) references book_member(memberId),
+foreign key (bookId) references vam_book(bookId)
+);
+
+DROP SEQUENCE VAM_CART_SEQ;
+CREATE SEQUENCE VAM_CART_SEQ
+START WITH 1
+INCREMENT BY 1;
+COMMIT;
+
+-- 유니크 제약조건 걸기
+alter table vam_cart add unique (memberId, bookId);
+
+--주문테이블 
+drop table vam_order;
+create table vam_order(
+orderId varchar2(50) primary key,
+addressee varchar2(50) not null,
+memberId varchar2(50),
+memberAddr1 varchar2(100) not null,
+memberAddr2 varchar2(100) not null,
+memberAddr3 varchar2(100) not null,
+orderState varchar2(30) not null,
+deliveryCost number not null,
+usePoint number not null,
+orderDate date default sysdate,
+FOREIGN KEY (memberId)REFERENCES book_member(memberId)
+);
+
+--주문 아이템 테이블
+create table vam_orderItem(
+orderItemId number NOT NULL primary key,
+orderId varchar2(50),
+bookId number,
+bookCount number not null,
+bookPrice number not null,
+bookDiscount number not null,
+savePoint number not null,
+FOREIGN KEY (orderId) REFERENCES vam_order(orderId),
+FOREIGN KEY (bookId) REFERENCES vam_book(bookId)
+);
+
+DROP SEQUENCE vam_orderItem_SEQ;
+CREATE SEQUENCE vam_orderItem_SEQ
+START WITH 1
+INCREMENT BY 1;
+COMMIT;
+
+--리뷰 테이블
+drop table vam_reply;
+create table vam_reply(
+replyId number not null primary key,
+bookId number not null,
+memberId varchar2(50) not null,
+regDate date default sysdate,
+content varchar2(3500),
+rating number(2, 1) not null,
+FOREIGN KEY (memberId) REFERENCES book_member(memberId),
+FOREIGN KEY (bookId) REFERENCES vam_book(bookId),
+UNIQUE(bookId, memberId)
+);
+
+DROP SEQUENCE VAM_REPLY_SEQ;
+CREATE SEQUENCE VAM_REPLY_SEQ
+START WITH 1
+INCREMENT BY 1;
+COMMIT;
+

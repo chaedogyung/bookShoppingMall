@@ -1,0 +1,16 @@
+com\vam\mapper\BookMapperTests.class
+com\vam\task\TaskTest.class
+com\vam\sample\DataSourceTests.class
+com\vam\service\CartServiceTests.class
+com\vam\service\BookServiceTests.class
+com\vam\mapper\AuthorMapperTests.class
+com\vam\service\AuthorServiceTests.class
+com\vam\persistence\JDBCTests.class
+com\vam\mapper\MemberMapperTests.class
+com\vam\mapper\OrderMapperTests.class
+com\vam\sample\SampleTests.class
+com\vam\mapper\AdminMapperTests.class
+com\vam\mapper\AttachMapperTests.class
+com\vam\mapper\ReplyMapperTests.class
+com\vam\mapper\CartMapperTests.class
+com\vam\service\AdminServiceTests.class
