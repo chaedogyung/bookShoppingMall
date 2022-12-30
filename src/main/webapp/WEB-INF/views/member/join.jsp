@@ -117,7 +117,7 @@ var code = "";				//이메일전송 인증번호 저장위한 코드
 
 $(document).ready(function(){
 	//회원가입 버튼(회원가입 기능 작동)
-	$(".join_button").click(function(){debugger;
+	$(".join_button").click(function(){
 		
 		/* 입력값 변수 */
 		var id = $('.id_input').val(); 				// id 입력란

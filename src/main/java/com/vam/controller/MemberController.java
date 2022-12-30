@@ -205,8 +205,4 @@ public class MemberController {
     	session.invalidate();
     	
     }
-	
-	
-	
-	
 }

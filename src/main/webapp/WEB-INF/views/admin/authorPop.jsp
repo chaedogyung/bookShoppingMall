@@ -105,6 +105,7 @@
 		</div>
 
 	</div>
+	</div>
 	<script>
 
 		let searchForm = $('#searchForm');

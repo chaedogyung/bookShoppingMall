@@ -279,7 +279,7 @@ public class AdminController {
 	/* 상품 등록 */
 	@PostMapping("/goodsEnroll")
 	public String goodsEnrollPOST(BookVO book, RedirectAttributes rttr) {
-		
+		System.out.println("ddddd" + book);
 		logger.info("goodsEnrollPOST......" + book);
 		
 		adminService.bookEnroll(book);

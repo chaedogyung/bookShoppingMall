@@ -6,23 +6,39 @@
 
   	<!-- 상품 등록 -->
   	<insert id="bookEnroll">
-  	
   		<selectKey resultType="int" keyProperty="bookId" order="AFTER">
-  		
-  			SELECT ISEQ$$_74040.currval from dual
-  		
-  		</selectKey>  	
-  	
-  		insert into vam_book(bookName, authorId, publeYear, publisher, cateCode, bookPrice, bookStock, bookDiscount, bookIntro, bookContents)
-		values(#{bookName},#{authorId}, #{publeYear},#{publisher},#{cateCode},#{bookPrice},#{bookStock},#{bookDiscount},#{bookIntro},#{bookContents})
-
+  			SELECT VAM_BOOK_SEQ.CURRVAL FROM DUAL
+  		</selectKey>
+		INSERT INTO VAM_BOOK(
+			BOOKID,
+			BOOKNAME, 
+			AUTHORID, 
+			PUBLEYEAR, 
+			PUBLISHER,
+			CATECODE,
+			BOOKPRICE, 
+			BOOKSTOCK, 
+			BOOKDISCOUNT, 
+			BOOKINTRO, 
+			BOOKCONTENTS)
+				VALUES(
+					VAM_BOOK_SEQ.NEXTVAL,
+					#{bookName},
+					#{authorId},
+					#{publeYear},
+					#{publisher},
+					#{cateCode},
+					#{bookPrice},
+					#{bookStock},
+					#{bookDiscount},
+					#{bookIntro},
+					#{bookContents}
+					)
   	</insert>
 
   	<!-- 카테고리 리스트 -->
   	<select id="cateList" resultType="com.vam.model.CateVO">
-  	
-  		select * from vam_bcate order by catecode
-  	
+  		SELECT * FROM VAM_BCATE ORDER BY CATECODE
   	</select>
   	
   	<!-- 상품 리스트 -->

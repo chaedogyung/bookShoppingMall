@@ -238,3 +238,4 @@ START WITH 1
 INCREMENT BY 1;
 COMMIT;
 
+alter table vam_book add ratingAvg number(2,1);
