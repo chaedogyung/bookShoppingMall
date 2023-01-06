@@ -42,6 +42,15 @@
 	    display: block;
 	    cursor: pointer;	
 	}
+	.form_section_content{
+	padding: 20px 35px;
+	margin-bottom: 20px;
+	}
+	.text_form{
+	text-align: right; 
+	width: 50%;
+    float: right;"
+	}
 	
 </style>
 </head>
@@ -122,7 +131,8 @@
                     				<label>상품 가격</label>
                     			</div>
                     			<div class="form_section_content">
-                    				<input name="bookPrice" value="0">
+                    				<input type="text" class="text_form" name="bookPrice" value="0" numberonlymincomma="true" koreancurrency="true" required="required" 
+                    				style="width: 50%;">
                     				<span class="ck_warn bookPrice_warn">상품 가격을 입력해주세요.</span>
                     			</div>
                     		</div>               
@@ -131,7 +141,7 @@
                     				<label>상품 재고</label>
                     			</div>
                     			<div class="form_section_content">
-                    				<input name="bookStock" value="0">
+                    				<input type="text" class="text_form" name="bookStock" value="0" style="width: 50%;" numberonlymincomma="true" koreanAmount="true">
                     				<span class="ck_warn bookStock_warn">상품 재고를 입력해주세요.</span>
                     			</div>
                     		</div>          
@@ -140,7 +150,7 @@
                     				<label>상품 할인율</label>
                     			</div>
                     			<div class="form_section_content">
-                    				<input id="discount_interface" maxlength="2" value="0">
+                    				<input type="text" class="text_form" id="discount_interface" maxlength="2" value="0" style="width: 50%;">
                     				<input name="bookDiscount" type="hidden" value="0">
                     				<span class="step_val">할인 가격 : <span class="span_discount"></span></span>
                     				<span class="ck_warn bookDiscount_warn">1~99 숫자를 입력해주세요.</span>
@@ -193,8 +203,64 @@
  				<%@include file="../includes/admin/footer.jsp" %>
  				
 <script>
+//상품 가격에 콤마 원 붙이기
+$(document).on("keyup", "input:text[numberOnlyMinComma]", function()	{
+	var strVal = $(this).val();
 
-	let enrollForm = $("#enrollForm")
+	event = event || window.event;
+	var keyID = (event.which) ? event.which : event.keyCode;
+
+	if( ( keyID >=48 && keyID <= 57 ) || ( keyID >=96 && keyID <= 105 )
+				|| keyID == 46 || keyID == 8 || keyID == 109
+				|| keyID == 189 || keyID == 9
+				|| keyID == 37 || keyID == 39){
+
+		if(strVal.length > 1 && (keyID == 109 || keyID == 189)){
+			return false;
+		}else{
+			return;
+		}
+	}else{
+		return false;
+	}
+});
+
+$(document).on("keyup", "input:text[numberOnlyMinComma]", function()	{
+	$(this).val( $(this).val().replace(/[^-\.0-9]/gi,"") );
+	$(this).val( $(this).val().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") );
+});
+
+$(document).on("focusout", "input:text[koreanCurrency]", function()	{
+	$(this).val( $(this).val().replace(",","") );
+	$(this).val( $(this).val().replace(/[^-\.0-9]/gi,"") );
+	$(this).val( $(this).val().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") );
+	if($(this).val() != '' ) {
+		$(this).val( $(this).val()+'원');
+	}		
+});
+
+$(document).on("focus", "input:text[koreanCurrency]", function()	{	
+	$(this).val( $(this).val().replace("원", ""));
+});
+///////////////////////////////////////////////////////////////////////////
+
+//상품 재고에 개 붙이기 "ex) 2개" 
+$(document).on("focusout", "input:text[koreanAmount]", function()	{
+	$(this).val( $(this).val().replace(",","") );
+	$(this).val( $(this).val().replace(/[^-\.0-9]/gi,"") );
+	$(this).val( $(this).val().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") );
+	if($(this).val() != '' ) {
+		$(this).val( $(this).val()+'개');
+	}		
+});
+
+$(document).on("focus", "input:text[koreanAmount]", function()	{	
+	$(this).val( $(this).val().replace("개", ""));
+});
+//////////////////////////////////////////////////////////////////////////
+
+
+let enrollForm = $("#enrollForm")
 	
 /* 취소 버튼 */
 $("#cancelBtn").click(function(){
@@ -461,62 +527,9 @@ $("#enrollBtn").on("click",function(e){
 		}// for		
 		
 	});		
-	
-	
-	/* 할인율 Input 설정 */
-	
-	$("#discount_interface").on("propertychange change keyup paste input", function(){
-		
-		let userInput = $("#discount_interface");
-		let discountInput = $("input[name='bookDiscount']");
-		
-		let discountRate = userInput.val();					// 사용자가 입력한 할인값
-		let sendDiscountRate = discountRate / 100;			// 서버에 전송할 할인값
-		let goodsPrice = $("input[name='bookPrice']").val();			// 원가
-		let discountPrice = goodsPrice * (1 - sendDiscountRate);		// 할인가격
-		
-		if(!isNaN(discountRate)){
-			$(".span_discount").html(discountPrice);		
-			discountInput.val(sendDiscountRate);				
-		}
 
-		
-	});	
 	
-	$("input[name='bookPrice']").on("change", function(){
-		
-		let userInput = $("#discount_interface");
-		let discountInput = $("input[name='bookDiscount']");
-		
-		let discountRate = userInput.val();					// 사용자가 입력한 할인값
-		let sendDiscountRate = discountRate / 100;			// 서버에 전송할 할인값
-		let goodsPrice = $("input[name='bookPrice']").val();			// 원가
-		let discountPrice = goodsPrice * (1 - sendDiscountRate);		// 할인가격
-		
-		if(!isNaN(discountRate)){
-			$(".span_discount").html(discountPrice);	
-		}
-		
-		
-	});
-
-	/* 할인값 처리 */
-	$("input[name='bookPrice']").on("change", function(){
-		
-		let userInput = $("#discount_interface");
-		let discountInput = $("input[name='bookDiscount']");
-		
-		let discountRate = userInput.val();					// 사용자가 입력한 할인값
-		let sendDiscountRate = discountRate / 100;			// 서버에 전송할 할인값
-		let goodsPrice = $("input[name='bookPrice']").val();			// 원가
-		let discountPrice = goodsPrice * (1 - sendDiscountRate);		// 할인가격
-		
-		if(!isNaN(discountRate)){
-			$(".span_discount").html(discountPrice);	
-		}
-		
-		
-	});
+	
 	
 	/* 이미지 업로드 */
 	$("input[type='file']").on("change", function(e){
