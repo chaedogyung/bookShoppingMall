@@ -131,7 +131,7 @@
                     				<label>상품 가격</label>
                     			</div>
                     			<div class="form_section_content">
-                    				<input type="text" class="text_form" name="bookPrice" value="0" numberonlymincomma="true" koreancurrency="true" required="required" 
+                    				<input type="text" class="text_form" name="bookPrice" id="bookPrice" value="0" numberonlymincomma="true" koreancurrency="true" required="required" 
                     				style="width: 50%;">
                     				<span class="ck_warn bookPrice_warn">상품 가격을 입력해주세요.</span>
                     			</div>
@@ -150,12 +150,20 @@
                     				<label>상품 할인율</label>
                     			</div>
                     			<div class="form_section_content">
-                    				<input type="text" class="text_form" id="discount_interface" maxlength="2" value="0" style="width: 50%;">
-                    				<input name="bookDiscount" type="hidden" value="0">
-                    				<span class="step_val">할인 가격 : <span class="span_discount"></span></span>
-                    				<span class="ck_warn bookDiscount_warn">1~99 숫자를 입력해주세요.</span>
+                    				<input onkeyup="showPrice();" type="text" class="text_form" name="bookDiscount" id="bookDiscount" 
+                    				numberonlymincomma="true" percent="true" maxlength="2" value="0" style="width: 50%;">
+                    			</div>
+                    		</div> 
+                    		
+                    		<div class="form_section">
+                    			<div class="form_section_title">
+                    				<label>할인 후 상품가격</label>
+                    			</div>
+                    			<div class="form_section_content">
+                    				<input type="text" class="text_form" id="bd_bookPrice" name="bd_bookPrice" value="0" style="width: 50%;">
                     			</div>
                     		</div>          		
+                    		         		
                     		<div class="form_section">
                     			<div class="form_section_title">
                     				<label>책 소개</label>
@@ -203,6 +211,20 @@
  				<%@include file="../includes/admin/footer.jsp" %>
  				
 <script>
+//할인율에 따른 상품가격
+function showPrice(){
+	var originPrice = $("#bookPrice").val();
+	originPrice = originPrice.replace('원','');
+	
+	var rate = $("#bookDiscount").val();
+	rate = rate.replace('%','');
+	
+	var savePrice = originPrice *(rate / 100);
+	var resultPrice = originPrice - savePrice;
+	$("#bd_bookPrice").val(resultPrice);
+};
+
+
 //상품 가격에 콤마 원 붙이기
 $(document).on("keyup", "input:text[numberOnlyMinComma]", function()	{
 	var strVal = $(this).val();
@@ -243,6 +265,24 @@ $(document).on("focus", "input:text[koreanCurrency]", function()	{
 	$(this).val( $(this).val().replace("원", ""));
 });
 ///////////////////////////////////////////////////////////////////////////
+$(document).on("focusout", "input:text[percent]", function()	{
+	$(this).val( $(this).val().replace(",","") );
+	$(this).val( $(this).val().replace(/[^-\.0-9]/gi,"") );
+	$(this).val( $(this).val().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") );
+	if($(this).val() != '' ) {
+		$(this).val( $(this).val()+'%');
+	}		
+});
+
+$(document).on("focus", "input:text[percent]", function()	{	
+	$(this).val( $(this).val().replace("%", ""));
+});
+
+
+
+
+
+
 
 //상품 재고에 개 붙이기 "ex) 2개" 
 $(document).on("focusout", "input:text[koreanAmount]", function()	{
