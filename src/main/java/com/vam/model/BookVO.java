@@ -38,6 +38,9 @@ public class BookVO {
 	/* 상품 할인률(백분율) */
 	private double bookDiscount;
 	
+	//할인 후 상품 가격
+	private int bd_bookPrice;
+	
 	/* 상품 소개 */
 	private String bookIntro;
 	
@@ -141,6 +144,14 @@ public class BookVO {
 		this.bookDiscount = bookDiscount;
 	}
 
+	public double getBd_bookPrice() {
+		return bd_bookPrice;
+	}
+
+	public void setBd_bookPrice(int bd_bookPrice) {
+		this.bd_bookPrice = bd_bookPrice;
+	}
+
 	public String getBookIntro() {
 		return bookIntro;
 	}
@@ -186,8 +197,9 @@ public class BookVO {
 		return "BookVO [bookId=" + bookId + ", bookName=" + bookName + ", authorId=" + authorId + ", authorName="
 				+ authorName + ", publeYear=" + publeYear + ", publisher=" + publisher + ", cateCode=" + cateCode
 				+ ", cateName=" + cateName + ", bookPrice=" + bookPrice + ", bookStock=" + bookStock + ", bookDiscount="
-				+ bookDiscount + ", bookIntro=" + bookIntro + ", bookContents=" + bookContents + ", regDate=" + regDate
-				+ ", updateDate=" + updateDate + ", imageList=" + imageList + "]";
+				+ bookDiscount + ", bd_bookPrice=" + bd_bookPrice + ", bookIntro=" + bookIntro + ", bookContents="
+				+ bookContents + ", regDate=" + regDate + ", updateDate=" + updateDate + ", imageList=" + imageList
+				+ "]";
 	}
 
 }
