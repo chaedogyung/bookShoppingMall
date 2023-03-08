@@ -164,7 +164,7 @@
 										</div>
 										<div class="sell_price">
 											<strong>
-												<fmt:formatNumber value="${list.bookPrice * (1-list.bookDiscount)}" pattern="#,### 원" />
+												<fmt:formatNumber value="${list.bd_bookPrice}" pattern="#,### 원" />
 											</strong>
 										</div>
 									</td>
