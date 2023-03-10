@@ -16,6 +16,8 @@ public class OrderPageItemDTO {
     
     private double bookDiscount;
     
+    private int bd_bookPrice;
+    
 	/* 만들어 낼 값 */
     private int salePrice;
     
@@ -101,7 +103,7 @@ public class OrderPageItemDTO {
 	}    
 
 	public void initSaleTotal() {
-		this.salePrice = (int) (this.bookPrice * (1-this.bookDiscount));
+		this.salePrice = this.bd_bookPrice;
 		this.totalPrice = this.salePrice*this.bookCount;
 		this.point = (int)(Math.floor(this.salePrice*0.05));
 		this.totalPoint =this.point * this.bookCount;
