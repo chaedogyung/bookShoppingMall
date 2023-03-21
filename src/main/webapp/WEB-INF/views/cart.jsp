@@ -49,7 +49,7 @@
 		<div class="top_area">
 			<!-- 로고영역 -->
 			<div class="logo_area">
-				<a href="/main"><img src="/resources/img/mLogo.png"></a>
+				<a href="/main"><img src="/resources/img/mLogo.jpg"></a>
 			</div>
 			<div class="search_area">
                 	<div class="search_wrap">
@@ -290,7 +290,7 @@
 					대표전화 : oooo-oooo(발신자 부담전화)
 					<br>
 					<br>
-					COPYRIGHT(C) <strong>kimvampa.tistory.com</strong>	ALL RIGHTS RESERVED.
+					COPYRIGHT(C) <strong>live-wire.tistory.com</strong>	ALL RIGHTS RESERVED.
 				</div>
 				<div class="clearfix"></div>
 			</div>

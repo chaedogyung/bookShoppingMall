@@ -7,8 +7,16 @@
 	<!-- 카트 추가 -->
 	<insert id="addCart">
 	
-		insert into vam_cart(memberId, bookId, bookCount)
-		values(#{memberId}, #{bookId}, #{bookCount}) 
+		insert into vam_cart(
+							 cartId,
+							 memberId,
+							 bookId,
+						     bookCount 
+			    ) values (
+			    			 VAM_CART_SEQ.NEXTVAL,
+						     #{memberId}, 
+						     #{bookId}, 
+						     #{bookCount}) 
 	
 	</insert>
 	

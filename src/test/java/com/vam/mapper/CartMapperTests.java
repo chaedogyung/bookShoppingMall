@@ -18,11 +18,10 @@ public class CartMapperTests {
 	private CartMapper mapper;
 
 	/*카트 등록*/
-	/*
 	@Test
 	public void addCart() {
 		String memberId = "admin";
-		int bookId = 65;
+		int bookId = 23;
 		int count = 2;
 		
 		CartDTO cart = new CartDTO();
@@ -40,7 +39,6 @@ public class CartMapperTests {
 		System.out.println("결과 : " + result);
 		
 	}	
-	 */
 	
 	/* 카트 삭제 */
 	/*
@@ -105,17 +103,16 @@ public class CartMapperTests {
 	*/	
 	
 	/* 장바구니 제거(주문 처리) */
-	@Test
-	public void deleteOrderCart() {
-		String memberId = "admin";
-		int bookId = 3201;
-		
-		CartDTO dto = new CartDTO();
-		dto.setMemberId(memberId);
-		dto.setBookId(bookId);
-		
-		mapper.deleteOrderCart(dto);
-		
-	}	
+	/*
+	 * @Test public void deleteOrderCart() { String memberId = "admin"; int bookId =
+	 * 3201;
+	 * 
+	 * CartDTO dto = new CartDTO(); dto.setMemberId(memberId);
+	 * dto.setBookId(bookId);
+	 * 
+	 * mapper.deleteOrderCart(dto);
+	 * 
+	 * }
+	 */
 
 }
