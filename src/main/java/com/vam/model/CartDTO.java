@@ -20,6 +20,9 @@ public class CartDTO {
     
     private double bookDiscount;
     
+    private int bd_bookPrice;
+
+    
     // 추가
     private int salePrice;
     
@@ -114,7 +117,7 @@ public class CartDTO {
 	}	
 
 	public void initSaleTotal() {
-		this.salePrice = (int) (this.bookPrice * (1-this.bookDiscount));
+		this.salePrice = (int) bd_bookPrice;
 		this.totalPrice = this.salePrice*this.bookCount;
 		this.point = (int)(Math.floor(this.salePrice*0.05));
 		this.totalPoint =this.point * this.bookCount;		

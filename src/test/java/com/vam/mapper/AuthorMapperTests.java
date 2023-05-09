@@ -19,7 +19,6 @@ public class AuthorMapperTests {
 	private AuthorMapper mapper;
 	
 	/* 작가 등록 테스트 */
-	/*
 	@Test
 	public void authorEnroll() throws Exception{
 		
@@ -32,10 +31,9 @@ public class AuthorMapperTests {
 		mapper.authorEnroll(author);
 		
 	}	
-	*/
+
 	
 	/* 작가 목록 테스트 */
-	/*
 	@Test
 	public void authorGetListTest() throws Exception{
 		
@@ -49,10 +47,8 @@ public class AuthorMapperTests {
 		}
 		
 	}
-	*/
 	
 	/* 작가 총 수 */
-	/*
 	@Test
 	public void authorGetTotalTest() throws Exception{
 		
@@ -65,10 +61,8 @@ public class AuthorMapperTests {
 		
 		
 	}
-	*/
 	
 	/* 작가 상세 페이지 */
-	/*
 	@Test
 	public void authorGetDetailTest() {
 		
@@ -79,10 +73,8 @@ public class AuthorMapperTests {
 		System.out.println("author......." + author);
 		
 	}
-	*/
 	
 	/* 작가 정보 수정 */
-	/*
 	@Test
 	public void authorModifyTest() {
 		
@@ -99,7 +91,6 @@ public class AuthorMapperTests {
 		System.out.println("수정 후...................." + mapper.authorGetDetail(author.getAuthorId()));
 		
 	}
-	*/
 	
 	/* 작가 정보 삭제 */
 	@Test

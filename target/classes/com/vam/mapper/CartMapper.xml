@@ -31,7 +31,7 @@
 	<!-- 카트 수량 수정 -->
 	<update id="modifyCount">
 	
-		update vam_cart set bookCount=#{bookCount} where cartId = #{cartId}
+		UPDATE VAM_CART SET BOOKCOUNT=#{bookCount} WHERE CARTID = #{cartId}
 	
 	</update>
 	
@@ -39,9 +39,9 @@
 	<!-- 카트 목록 -->
 	<select id="getCart" resultType="com.vam.model.CartDTO">
 	
-		select a.cartId, a.memberId, a.bookId, a.bookCount, b.bookName, b.bookPrice, b.bookDiscount
-		from vam_cart a left outer join vam_book b on a.bookId = b.bookId
-		where memberId = #{memberId}	
+		SELECT A.CARTID, A.MEMBERID, A.BOOKID, A.BOOKCOUNT, B.BOOKNAME, B.BOOKPRICE, B.BOOKDISCOUNT, B.BD_BOOKPRICE
+		FROM VAM_CART A LEFT OUTER JOIN VAM_BOOK B ON A.BOOKID = B.BOOKID
+		WHERE MEMBERID = #{memberId}	
 	
 	</select>
 	
