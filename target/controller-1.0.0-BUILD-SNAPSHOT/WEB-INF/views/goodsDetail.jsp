@@ -49,7 +49,7 @@
 		<div class="top_area">
 			<!-- 로고영역 -->
 			<div class="logo_area">
-				<a href="/main"><img src="/resources/img/mLogo.png"></a>
+				<a href="/main"><img src="/resources/img/mLogo.jpg"></a>
 			</div>
 			<div class="search_area">
                 	<div class="search_wrap">
@@ -121,9 +121,9 @@
 					<div class="price">
 						<div class="sale_price">정가 : <fmt:formatNumber value="${goodsInfo.bookPrice}" pattern="#,### 원" /></div>
 						<div class="discount_price">
-							판매가 : <span class="discount_price_number"><fmt:formatNumber value="${goodsInfo.bookPrice - (goodsInfo.bookPrice*goodsInfo.bookDiscount)}" pattern="#,### 원" /></span> 
-							[<fmt:formatNumber value="${goodsInfo.bookDiscount*100}" pattern="###" />% 
-							<fmt:formatNumber value="${goodsInfo.bookPrice*goodsInfo.bookDiscount}" pattern="#,### 원" /> 할인]
+							판매가 : <span class="discount_price_number"><fmt:formatNumber value="${goodsInfo.bd_bookPrice}" pattern="#,### 원" /></span> 
+							[<fmt:formatNumber value="${goodsInfo.bookDiscount}" pattern="###" />% 
+							<fmt:formatNumber value="${goodsInfo.bookPrice*goodsInfo.bookDiscount/100}" pattern="#,### 원" /> 할인]
 						</div>
 						<div>
 							적립 포인트 : <span class="point_span"></span>원
@@ -255,7 +255,7 @@
 					대표전화 : oooo-oooo(발신자 부담전화)
 					<br>
 					<br>
-					COPYRIGHT(C) <strong>kimvampa.tistory.com</strong>	ALL RIGHTS RESERVED.
+					COPYRIGHT(C) <strong>live-wire.tistory.com</strong>	ALL RIGHTS RESERVED.
 				</div>
 				<div class="clearfix"></div>
 			</div>
@@ -294,7 +294,7 @@ $(document).ready(function(){
 	$(".publeyear").html(publeYear);
 	
 	/* 포인트 삽입 */
-	let salePrice = "${goodsInfo.bookPrice - (goodsInfo.bookPrice*goodsInfo.bookDiscount)}"
+	let salePrice = "${goodsInfo.bd_bookPrice}"
 	let point = salePrice*0.05;
 	point = Math.floor(point);
 	$(".point_span").text(point);	

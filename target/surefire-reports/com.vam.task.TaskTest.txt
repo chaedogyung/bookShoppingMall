@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.vam.task.TaskTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.775 sec <<< FAILURE! - in com.vam.task.TaskTest
-taskTests(com.vam.task.TaskTest)  Time elapsed: 0.163 sec  <<< ERROR!
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.013 sec <<< FAILURE! - in com.vam.task.TaskTest
+taskTests(com.vam.task.TaskTest)  Time elapsed: 0.158 sec  <<< ERROR!
 java.lang.NullPointerException
 	at com.vam.task.TaskTest.taskTests(TaskTest.java:76)
 

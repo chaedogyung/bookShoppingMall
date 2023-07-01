@@ -131,7 +131,8 @@
                     				<label>상품 가격</label>
                     			</div>
                     			<div class="form_section_content">
-                    				<input type="text" class="text_form" name="bookPrice" id="bookPrice" value="0" required="required" style="width:20%;float:left;margin-left: 560px;" numberOnly>
+                    				<input type="text" class="text_form" name="bookPrice" id="bookPrice" value="0" required="required" 
+                    				style="width:20%;float:left;margin-left: 560px;" numberOnly maxlength='6'>
                     				<span style="float:right;margin-top: 9px;">원</span>
                     				<span class="ck_warn bookPrice_warn">상품 가격을 입력해주세요.</span>
                     			</div>
@@ -141,7 +142,8 @@
                     				<label>상품 재고</label>
                     			</div>
                     			<div class="form_section_content">
-                    				<input type="text" class="text_form" name="bookStock" value="0" style="width:20%;float:left;margin-left: 560px;" numberOnly>
+                    				<input type="text" class="text_form" name="bookStock" value="0" 
+                    				style="width:20%;float:left;margin-left: 560px;" numberOnly maxlength='6'>
                     				<span style="float:right;margin-top: 9px;">개</span>
                     				<span class="ck_warn bookStock_warn">상품 재고를 입력해주세요.</span>
                     			</div>
@@ -161,7 +163,8 @@
                     				<label>할인 후 상품가격</label>
                     			</div>
                     			<div class="form_section_content">
-                    				<input type="text" class="text_form" id="bd_bookPrice" name="bd_bookPrice" numberOnly value="0" readonly style="width:20%; float:left; margin-left:560px;">
+                    				<input type="text" class="text_form" id="bd_bookPrice" name="bd_bookPrice" numberOnly value="0" readonly 
+                    				maxlength="9" style="width:20%; float:left; margin-left:560px;">
                     				<span style="float:right;margin-top: 9px;">원</span>
                     				<span class="ck_warn bd_bookPrice_warn">할인 후 상품가격을 입력해주세요.</span>
                     			</div>
@@ -217,14 +220,12 @@
 //할인율에 따른 상품가격
 function showPrice(){
 	var originPrice = $("#bookPrice").val();
-	originPrice = originPrice.replace('원','');
 	
 	var rate = $("#bookDiscount").val();
-	rate = rate.replace('%','');
 	
 	var savePrice = originPrice *(rate / 100);
-	var resultPrice = originPrice - savePrice;
-	$("#bd_bookPrice").val(resultPrice);
+	var resultPrice = Math.floor(originPrice - savePrice);
+	resultPrice = $("#bd_bookPrice").val(resultPrice);
 };
 
 $("input:text[numberOnly]").on("keyup", function() {
