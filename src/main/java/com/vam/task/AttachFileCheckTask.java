@@ -10,6 +10,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -22,7 +24,7 @@ import lombok.extern.log4j.Log4j;
 @Component
 @Log4j
 public class AttachFileCheckTask {
-
+	private static final Logger log = LogManager.getLogger(AttachFileCheckTask.class);
 	@Autowired
 	private AdminMapper mapper;
 	
