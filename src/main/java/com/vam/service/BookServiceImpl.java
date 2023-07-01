@@ -3,6 +3,8 @@ package com.vam.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +23,7 @@ import lombok.extern.log4j.Log4j;
 @Service
 @Log4j
 public class BookServiceImpl implements BookService{
-
+	private static final Logger log = LogManager.getLogger(BookServiceImpl.class);
 	@Autowired
 	private BookMapper bookMapper;
 	

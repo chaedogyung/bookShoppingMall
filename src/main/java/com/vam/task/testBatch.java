@@ -1,15 +1,13 @@
 package com.vam.task;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
-
-import lombok.extern.log4j.Log4j;
 
 
-@Log4j
 public class testBatch {
 
-
+	private static final Logger log = LogManager.getLogger(testBatch.class);
 	@Scheduled(cron = "0 * * * * *")
 	public void testMethod() throws Exception{
 		
