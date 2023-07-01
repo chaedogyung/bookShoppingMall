@@ -42,8 +42,6 @@ local.properties
 # Tern plugin
 .tern-project
 
-order.jsp
-
 # TeXlipse plugin
 .texlipse
 
