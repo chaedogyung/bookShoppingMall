@@ -41,7 +41,7 @@
 		    select * from(
 		        select /*+INDEX_DESC(vam_book SYS_C008227)*/ rownum as rn, bookId, bookName,
 		            (select authorName from vam_author where vam_book.authorId = vam_author.authorId) authorName, authorId,
-		            (select cateName from vam_bcate where vam_book.cateCode = vam_bcate.cateCode) cateName,cateCode, publisher, publeYear, bookPrice,bookDiscount  
+		            (select cateName from vam_bcate where vam_book.cateCode = vam_bcate.cateCode) cateName,cateCode, publisher, publeYear, bookPrice, bookDiscount, bd_bookPrice 
 		        from vam_book
 		        where 
 	    ]]>
@@ -69,7 +69,11 @@
 	<!-- 작가 id 리스트 요청 -->
 	<select id="getAuthorIdList" resultType="String">
 	
-		select authorid from vam_author where authorName like '%' || #{keyword} || '%'
+		select 
+		authorid 
+		from vam_author 
+		where 
+		authorName like '%' || #{keyword,jdbcType=VARCHAR} || '%'
 	
 	</select>	
 	
@@ -159,10 +163,29 @@
 	<!-- 상품 정보 -->
 	<select id="getGoodsInfo" resultType="com.vam.model.BookVO">
 	
-			select a.BOOKID, a.BOOKNAME, a.AUTHORID, b.AUTHORNAME, a.PUBLEYEAR, a.PUBLISHER, a.CATECODE, c.CATENAME, a.BOOKPRICE, a.BOOKSTOCK, a.BOOKDISCOUNT, a.BOOKINTRO, a.BOOKCONTENTS
-			from vam_book a left outer join vam_author b on a.authorId = b.authorId
-			left outer join vam_bcate c on a.catecode = c.catecode
-			where bookid = ${bookId}	
+			select 
+				a.BOOKID, 
+				a.BOOKNAME, 
+				a.AUTHORID, 
+				b.AUTHORNAME, 
+				a.PUBLEYEAR, 
+				a.PUBLISHER, 
+				a.CATECODE, 
+				c.CATENAME, 
+				a.BOOKPRICE, 
+				a.BOOKSTOCK, 
+				a.BOOKDISCOUNT, 
+				a.BOOKINTRO, 
+				a.BOOKCONTENTS,
+				a.BD_BOOKPRICE
+			from 
+				VAM_BOOK A LEFT OUTER JOIN VAM_AUTHOR B 
+				ON A.AUTHORID = B.AUTHORID
+				
+				LEFT OUTER JOIN VAM_BCATE C 
+				ON A.CATECODE = C.CATECODE
+			where 
+				bookid = ${bookId}	
 	
 	</select>	
 	
