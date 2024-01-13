@@ -1,20 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
-    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>          
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>          
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Welcome BookMall</title>
 <link rel="stylesheet" href="resources/css/search.css">
-<script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
-
 <div class="wrapper">
 	<div class="wrap">
 		<div class="top_gnb_area">
