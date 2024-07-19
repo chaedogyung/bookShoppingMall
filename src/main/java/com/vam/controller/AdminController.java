@@ -44,7 +44,7 @@ import com.vam.service.AuthorService;
 import com.vam.service.OrderService;
 
 import net.coobird.thumbnailator.Thumbnails;
-
+ 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
